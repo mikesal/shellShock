@@ -6,7 +6,7 @@
 
 char commandPrompt[2048];
 
-char* getPrompt()
+void getPrompt()
 {
 	char hostname[1024];
 	hostname[1023] = '\0';
@@ -15,20 +15,19 @@ char* getPrompt()
 	commandPrompt[0] = '\0';
 	char cwd[1024];
 	cwd[0] = '\0';
-	strcat(cwd, getCWD());
+	getcwd(cwd, sizeof(cwd));
 	char homeDir[1024];
 	homeDir[0] = '\0';
 	strcat(homeDir, "/home/");
 	strcat(homeDir, user);
-	
-//	printf("CWD: \t|%s|\n", cwd);
-//	printf("HD:  \t|%s|\n", homeDir);
-	
+		
 	if (strcmp(cwd, homeDir)==0)
 	{
 		cwd[0] = '~';
 		cwd[1] = '\0';
 	}
+	else if (strcmp(cwd, "/home") <= 0)
+		cwd[0] = '~';
 	else if (strstr(cwd, "home") != NULL)
 	{
 		cwd[0] = '~';
@@ -62,5 +61,7 @@ char* getPrompt()
 	size_t len = strlen(commandPrompt);
 	commandPrompt[len] = '\0';
 	
-	return commandPrompt;
+	printf("%s", commandPrompt);
+	
+	return;
 }
