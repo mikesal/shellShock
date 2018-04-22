@@ -21,8 +21,8 @@ char* getPrompt()
 	strcat(homeDir, "/home/");
 	strcat(homeDir, user);
 	
-	printf("CWD: \t|%s|\n", cwd);
-	printf("HD:  \t|%s|\n", homeDir);
+//	printf("CWD: \t|%s|\n", cwd);
+//	printf("HD:  \t|%s|\n", homeDir);
 	
 	if (strcmp(cwd, homeDir)==0)
 	{
