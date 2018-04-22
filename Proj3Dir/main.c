@@ -16,6 +16,7 @@ int main(int argc, char* argv[])
 	
 	while (usrInpt[0] != 'q')
 	{
+		cwd[0] = '\0';
 		getCWD();
 		commandPrompt[0] = '\0';
 		getPrompt();

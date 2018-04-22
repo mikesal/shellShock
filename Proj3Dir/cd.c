@@ -13,7 +13,7 @@ void changeDir(char* path)
 		if (pathStart > 0)
 			path[i-pathStart] = path[i];
 		if (path[i] == ' ')
-			pathStart = *path[i+1];
+			pathStart = i+1;
 	}
 	path[strlen(path)-1] = '\0';
 	
