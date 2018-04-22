@@ -14,6 +14,7 @@ char* getPrompt()
 	user[1023] = '\0';
 	*commandPrompt = '\0';
 	char cwd[1024];
+	cwd[0] = '\0';
 	strcat(cwd, getCWD());
 	
 	cwd[0] = '~';
@@ -32,7 +33,7 @@ char* getPrompt()
 			slash = 0;
 	}
 	cwd[i-index+1] = '\0';
-
+	printf("\nCWD in GetPrompt: %s\n\n", cwd);
 	
 	gethostname(hostname, 1023);
 	getlogin_r(user, 1023);

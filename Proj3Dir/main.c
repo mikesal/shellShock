@@ -17,10 +17,12 @@ int main(int argc, char* argv[])
 	{
 		printf("%s", commandPrompt);
 		fgets(usrInpt, sizeof(usrInpt), stdin);
+		getCWD();
+		commandPrompt[0] = '\0';
+		getPrompt();
 		
 		if(strcmp(usrInpt, "mypwd\n") == 0)
 		{
-			getCWD();
 			printf("%s\n", cwd);
 		}
 	}
