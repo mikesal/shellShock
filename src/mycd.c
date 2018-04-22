@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>
-#include "pwd.h"
+#include "mypwd.h"
 
 void changeDir(char* path)
 {
