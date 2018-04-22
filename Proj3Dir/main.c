@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include "prompt.h"
 #include "pwd.h"
+#include "cd.h"
 
 char cwd[1024];
 char commandPrompt[2048];
@@ -15,16 +16,17 @@ int main(int argc, char* argv[])
 	
 	while (usrInpt[0] != 'q')
 	{
-		printf("%s", commandPrompt);
-		fgets(usrInpt, sizeof(usrInpt), stdin);
 		getCWD();
 		commandPrompt[0] = '\0';
 		getPrompt();
 		
-		if(strcmp(usrInpt, "mypwd\n") == 0)
-		{
+		printf("%s", commandPrompt);
+		fgets(usrInpt, sizeof(usrInpt), stdin);
+		
+		if(strstr(usrInpt, "mypwd") == usrInpt)
 			printf("%s\n", cwd);
-		}
+		if(strstr(usrInpt, "mycd") == usrInpt)
+			changeDir(usrInpt);
 	}
 	
 	return 0;
