@@ -2,13 +2,14 @@
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>
-#include "mypwd.h"
+#include "pwd.h"
 
 void changeDir(char* path)
 {
 	int pathStart = 0;
+	int i;
 	
-	for (int i = 0; i <= strlen(path); i++)
+	for (i = 0; i <= strlen(path); i++)
 	{
 		if (pathStart > 0)
 			path[i-pathStart] = path[i];
