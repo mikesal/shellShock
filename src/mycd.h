@@ -1,6 +1,6 @@
 #ifndef MYCD_H
 #define MYCD_H
 
-void changeDir(char* path);
+int mycd(char** args);
 
 #endif

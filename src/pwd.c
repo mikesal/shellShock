@@ -5,11 +5,11 @@
 
 char cwd[1024];
 
-char* getCWD()
+int mypwd(char** args)
 {
 	cwd[1023] = '\0';
 	getcwd(cwd, sizeof(cwd));
 	printf("%s\n", cwd);
 
-	return cwd;	
+	return 1;	
 }

@@ -6,26 +6,10 @@
 #include <string.h>
 #include <fcntl.h>
 #include "parse.h"
+#include "mycd.h"
+#include "prompt.h"
+#include "pwd.h"
 
-int mycd(char **args) {
-  if (args[1] == NULL) {
-    fprintf(stderr, "mysh: expected argument to \"cd\"\n");
-  }
-  else {
-    if (chdir(args[1]) != 0) {
-      perror("mysh");
-    }
-  }
-  return 1;
-}
-
-int mypwd(char **args) {
-  char *p;
-  p = getcwd(NULL, 0);
-  printf("%s\n",p);
-  free(p); p=NULL;
-  return 1;
-}
 
 char *builtin_str[] = {
   "mypwd",
@@ -126,7 +110,7 @@ int main(int argc, char **argv) {
   int flag;
 
   do {
-    printf("mysh >> ");
+    getPrompt();
     line = read_line();
     args = split_line(line);
     flag = built_or_extern(args);
