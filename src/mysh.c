@@ -31,7 +31,8 @@ int execute(char **args) {
   if (pid == 0) { //child process
     int in=0, out=0;
     char input[64], output[64];
-    for(int i=0;args[i]!= NULL;i++) {
+    int i = 0;
+    for(;args[i]!= NULL;i++) {
       if(strcmp(args[i],"<")==0 || strcmp(args[i], ">")==0 || strcmp(args[i], "|")==0) {
         if(strcmp(args[i],">")==0) {
           args[i]=NULL;
@@ -96,7 +97,8 @@ int built_or_extern(char **args) {
   if (args[0] == NULL) {
     return 1;
   }
-  for (int i = 0; i < (sizeof(builtin_str) / sizeof(char *)); i++) {
+  int i = 0;
+  for (; i < (sizeof(builtin_str) / sizeof(char *)); i++) {
     if (strcmp(args[0], builtin_str[i]) == 0) {
       return (*builtin_func[i])(args);
     }
