@@ -1,5 +1,5 @@
 #makefile
-OBJS = mysh.o parse.o
+OBJS = parse.o prompt.o pwd.o mycd.o
 CC = gcc
 DEBUG = -g
 CFLAGS = -Wall -c $(DEBUG)
@@ -7,18 +7,18 @@ LFLAGS = -Wall $(DEBUG)
 SUBS = mycat mycp myls
 current = $(shell pwd)
 
-all : $(OBJS)
-	$(CC) $(LFLAGS) $(OBJS) -o mysh
+all : mysh.o $(OBJS)
+	$(CC) $(LFLAGS) mysh.o $(OBJS) -o mysh
 	make subsystem
 	export PATH=$(current)/mycat:$(current)/mycp:$(current)/myls:$(PATH) ; echo "\n" ; ./mysh
 
 mysh.o : mysh.c
-	$(CC) $(CFLAGS) mysh.c
+	$(CC) $(CFLAGS) $<
 
-parse.o : parse.h parse.c
-	$(CC) $(CFLAGS) parse.c
+$(OBJS) : %.o: %.c %.h
+	$(CC) $(CFLAGS) $<
 
-subsystem : 
+subsystem :
 	$(MAKE) -C mycat
 	$(MAKE) -C mycp
 	$(MAKE) -C myls
