@@ -7,9 +7,9 @@
 int mycd(char** args)
 {
 	if (args[1] == NULL) 
-    	fprintf(stderr, "mysh: expected argument to \"cd\"\n");
+    	fprintf(stderr, "mycd: expected argument to \"cd\"\n");
   	else if (chdir(args[1]) != 0)
-    	perror("mysh");
+    	perror("mycd");
  
   	return 1;
 }
