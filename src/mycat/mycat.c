@@ -22,16 +22,16 @@ int main(int argc, char **argv) {
   }
   else{
     for(int i = 1; i < argc; i++){
-      if(argv[i][0] == '-'){
-        if(access(argv[i], R_OK|F_OK) == -1){ //check read access to file
+      if((argv[i][0] == '-' )| (access(argv[i], R_OK|F_OK) == -1)){ //check read access to file
           perror("ACCESS ERROR");
           exit (1);
-        }
-        fd = open(argv[i], O_RDONLY);
       }
       else{
         fd = STDOUT_FILENO;
       }
+      
+      fd = open(argv[i], O_RDONLY);
+
       while((s = read(fd, buffer, BUFFSIZE)) > 0){
         if(write(STDOUT_FILENO, buffer, s) != s)
           perror("WRITE ERROR");
